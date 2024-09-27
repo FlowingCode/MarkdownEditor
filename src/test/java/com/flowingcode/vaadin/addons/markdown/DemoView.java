@@ -17,15 +17,20 @@
  * limitations under the License.
  * #L%
  */
-package com.flowingcode.vaadin.addons;
 
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.router.RouterLayout;
+package com.flowingcode.vaadin.addons.markdown;
+
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.router.BeforeEnterEvent;
+import com.vaadin.flow.router.BeforeEnterObserver;
+import com.vaadin.flow.router.Route;
 
 @SuppressWarnings("serial")
-public class DemoLayout extends Div implements RouterLayout {
+@Route("")
+public class DemoView extends VerticalLayout implements BeforeEnterObserver {
 
-  public DemoLayout() {
-    setSizeFull();
+  @Override
+  public void beforeEnter(BeforeEnterEvent event) {
+    event.forwardTo(MarkdownDemoView.class);
   }
 }

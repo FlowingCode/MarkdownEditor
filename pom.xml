@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.flowingcode.vaadin.addons</groupId>
-    <artifactId>template-addon</artifactId>
+    <artifactId>markdown-editor-addon</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>Template Add-on</name>
-    <description>Template Add-on for Vaadin Flow</description>
+    <name>Markdown Editor Add-on</name>
+    <description>Markdown Editor for Vaadin Flow</description>
     <url>https://www.flowingcode.com/en/open-source/</url>
 
     <properties>
@@ -39,9 +39,9 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/FlowingCode/AddonStarter24</url>
-        <connection>scm:git:git://github.com/FlowingCode/AddonStarter24.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:/FlowingCode/AddonStarter24.git</developerConnection>
+        <url>https://github.com/FlowingCode/MarkdownEditor</url>
+        <connection>scm:git:git://github.com/FlowingCode/MarkdownEditor.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:/FlowingCode/MarkdownEditor.git</developerConnection>
         <tag>master</tag>
     </scm>
 
@@ -126,6 +126,7 @@
             <groupId>com.flowingcode.vaadin.addons.demo</groupId>
             <artifactId>commons-demo</artifactId>
             <version>${flowingcode.commons.demo.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -226,8 +227,14 @@
                     <licenseName>apache_v2</licenseName>
                     <addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
                     <excludes>
-                        <exclude>**/dev-bundle/**</exclude>
+                        <exclude>**/main/dev-bundle/**</exclude>
+                        <exclude>**/main/bundles/**</exclude>
+                        <exclude>**/main/frontend/**</exclude>
+                        <exclude>**/main/frontend/**</exclude>
                     </excludes>
+                    <extraExtensions>
+                        <tsx>java</tsx>
+                    </extraExtensions>
                 </configuration>
             </plugin>
             <plugin>
@@ -293,7 +300,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.0.1</version>
+                        <version>3.10.0</version>
                         <executions>
                             <execution>
                                 <id>attach-javadocs</id>
@@ -306,7 +313,10 @@
                         <configuration>
                             <quiet>true</quiet>
                             <doclint>none</doclint>
-                            <additionalparam>-Xdoclint:none</additionalparam>
+                            <failOnWarnings>true</failOnWarnings>
+                            <links>
+                                <link>https://javadoc.io/doc/com.vaadin/vaadin-platform-javadoc/${vaadin.version}</link>								
+                            </links>
                         </configuration>
                     </plugin>
                     <plugin>

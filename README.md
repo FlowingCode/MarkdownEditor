@@ -1,23 +1,26 @@
-[![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/template-addon)
-[![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/template-addon.svg)](https://vaadin.com/directory/component/template-addon)
-[![Build Status](https://jenkins.flowingcode.com/job/template-addon/badge/icon)](https://jenkins.flowingcode.com/job/template-addon)
-[![Maven Central](https://img.shields.io/maven-central/v/com.flowingcode.vaadin.addons/template-addon)](https://mvnrepository.com/artifact/com.flowingcode.vaadin.addons/template-addon)
+[![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/markdown-editor-add-on)
+[![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/markdown-editor-addon.svg)](https://vaadin.com/directory/component/markdown-editor-add-on)
+[![Build Status](https://jenkins.flowingcode.com/job/markdown-editor-addon/badge/icon)](https://jenkins.flowingcode.com/job/MarkdownEditor-addon)
+[![Maven Central](https://img.shields.io/maven-central/v/com.flowingcode.vaadin.addons/markdown-editor-addon)](https://mvnrepository.com/artifact/com.flowingcode.vaadin.addons/markdown-editor-addon)
+[![Javadoc](https://img.shields.io/badge/javadoc-00b4f0)](https://javadoc.flowingcode.com/artifact/com.flowingcode.vaadin.addons/markdown-editor-addon)
 
-# Template Add-on
+# Markdown Editor Add-on
 
-This is a template project for building new Vaadin 24 add-ons
+This is a wrapper around [the React Markdown Editor component](https://github.com/uiwjs/react-md-editor).
 
 ## Features
 
-* List the features of your add-on in here
+* Supports both visual editing of markdown and also just viewing markdown content
+* Support for dark and light themes
+* Built in support for sanitization
 
 ## Online demo
 
-[Online demo here](http://addonsv24.flowingcode.com/template)
+[Online demo here](http://addonsv24.flowingcode.com/markdown-editor)
 
 ## Download release
 
-[Available in Vaadin Directory](https://vaadin.com/directory/component/template-addon)
+[Available in Vaadin Directory](https://vaadin.com/directory/component/markdown-editor-add-on)
 
 ### Maven install
 
@@ -26,7 +29,7 @@ Add the following dependencies in your pom.xml file:
 ```xml
 <dependency>
    <groupId>com.flowingcode.vaadin.addons</groupId>
-   <artifactId>template-addon</artifactId>
+   <artifactId>markdown-editor-addon</artifactId>
    <version>X.Y.Z</version>
 </dependency>
 ```
@@ -43,7 +46,7 @@ To see the demo, navigate to http://localhost:8080/
 
 ## Release notes
 
-See [here](https://github.com/FlowingCode/TemplateAddon/releases)
+See [here](https://github.com/FlowingCode/MarkdownEditor/releases)
 
 ## Issue tracking
 
@@ -68,13 +71,33 @@ Then, follow these steps for creating a contribution:
 
 This add-on is distributed under Apache License 2.0. For license terms, see LICENSE.txt.
 
-TEMPLATE_ADDON is written by Flowing Code S.A.
+Markdown Editor Add-on is written by Flowing Code S.A.
 
 # Developer Guide
 
 ## Getting started
 
-Add your code samples in this section
+### Markdown Viewer
+
+To use the viewer, instantiate it and add it to a view like this:
+
+    MarkdownViewer mdv = new MarkdownViewer();
+    mdv.setSizeFull();
+    mdv.setDataColorMode(DataColorMode.LIGTH);
+    mdv.setContent("# h1 Heading");
+    add(mdv);
+    
+### Markdown Editor
+
+To use the editor, similar to the viewer, instantiate it and add it to a view like this:
+
+    MarkdownEditor mde = new MarkdownEditor();
+    mde.setSizeFull();
+    mde.setPlaceholder("Enter Markdown here");
+    mde.setMaxLength(500);
+    mde.setDataColorMode(DataColorMode.LIGTH);
+
+To obtain the edited value, call `getContent()`
 
 ## Special configuration when using Spring
 

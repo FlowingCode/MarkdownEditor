@@ -1,15 +1,15 @@
 /*-
  * #%L
- * Template Add-on
+ * Markdown Editor Add-on
  * %%
  * Copyright (C) 2024 Flowing Code
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,22 +17,24 @@
  * limitations under the License.
  * #L%
  */
-package com.flowingcode.vaadin.addons.template;
 
-import com.flowingcode.vaadin.addons.DemoLayout;
-import com.flowingcode.vaadin.addons.GithubLink;
-import com.flowingcode.vaadin.addons.demo.TabbedDemo;
-import com.vaadin.flow.router.ParentLayout;
-import com.vaadin.flow.router.Route;
+package com.flowingcode.vaadin.addons.markdown.it;
 
-@SuppressWarnings("serial")
-@ParentLayout(DemoLayout.class)
-@Route("template")
-@GithubLink("https://github.com/FlowingCode/AddonStarter24")
-public class TemplateDemoView extends TabbedDemo {
+import static org.junit.Assert.assertTrue;
+import com.vaadin.flow.component.html.testbench.DivElement;
+import com.vaadin.testbench.TestBenchElement;
+import org.junit.Test;
 
-  public TemplateDemoView() {
-    addDemo(TemplateDemo.class);
-    setSizeFull();
+public class MarkdownEditorIT extends AbstractViewTest {
+  
+  public MarkdownEditorIT() {
+    super("editor-demo");
+  }
+
+  @Test
+  public void componentWorks() {
+    TestBenchElement element = $("markdown-editor").first();
+    DivElement div = element.$(DivElement.class).first();
+    assertTrue(div.getClassNames().contains("wmde-markdown-var"));
   }
 }

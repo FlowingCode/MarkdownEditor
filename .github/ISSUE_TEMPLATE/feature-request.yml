@@ -1,5 +1,5 @@
 name: Feature Request
-description: Please add feature suggestions related to TEMPLATE_ADDON here.
+description: Please add feature suggestions related to Markdown Editor add-on here.
 body:
   - type: textarea
     id: feature-proposal
