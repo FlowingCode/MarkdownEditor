@@ -17,15 +17,21 @@
  * limitations under the License.
  * #L%
  */
-package com.flowingcode.vaadin.addons;
+.w-md-editor-text {
+	height:100%;
+}
+.w-md-editor-text textarea {
+	height:100%;
+}
 
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.router.RouterLayout;
+.w-md-editor {
+	height: calc(100% - 3px) !important;
+	width: calc(100% - 2px) !important;
+	top: 1px;
+	left: 1px;
+}
 
-@SuppressWarnings("serial")
-public class DemoLayout extends Div implements RouterLayout {
-
-  public DemoLayout() {
-    setSizeFull();
-  }
+.wmde-markdown {
+	overflow: auto;
+	height: 100%;
 }
