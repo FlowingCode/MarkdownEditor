@@ -4,7 +4,7 @@
 
     <groupId>com.flowingcode.vaadin.addons</groupId>
     <artifactId>markdown-editor-addon</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>Markdown Editor Add-on</name>
     <description>Markdown Editor for Vaadin Flow</description>
     <url>https://www.flowingcode.com/en/open-source/</url>
@@ -40,7 +40,7 @@
         <url>https://github.com/FlowingCode/MarkdownEditor</url>
         <connection>scm:git:git://github.com/FlowingCode/MarkdownEditor.git</connection>
         <developerConnection>scm:git:ssh://git@github.com:/FlowingCode/MarkdownEditor.git</developerConnection>
-        <tag>1.0.0</tag>
+        <tag>master</tag>
     </scm>
 
     <distributionManagement>
