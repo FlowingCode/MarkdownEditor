@@ -49,7 +49,7 @@ public class MarkdownEditorDemo extends VerticalLayout {
           mde.setDataColorMode(DataColorMode.DARK);
           break;
         case "Light":
-          mde.setDataColorMode(DataColorMode.LIGTH);
+          mde.setDataColorMode(DataColorMode.LIGHT);
           break;
         case "Automatic":
           mde.setDataColorMode(DataColorMode.AUTO);

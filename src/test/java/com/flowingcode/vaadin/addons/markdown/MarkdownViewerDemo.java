@@ -212,7 +212,7 @@ Duplicated footnote reference[^second].
           mdv.setDataColorMode(DataColorMode.DARK);
           break;
         case "Light":
-          mdv.setDataColorMode(DataColorMode.LIGTH);
+          mdv.setDataColorMode(DataColorMode.LIGHT);
           break;
         case "Automatic":
           mdv.setDataColorMode(DataColorMode.AUTO);
