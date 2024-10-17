@@ -41,11 +41,19 @@ public class BaseMarkdownComponent extends ReactAdapterComponent implements HasS
    *
    * <ul>
    *   <li>{@link #DARK}: Dark color scheme.
-   *   <li>{@link #LIGTH}: Light color scheme.
+   *   <li>{@link #LIGHT}: Light color scheme.
    *   <li>{@link #AUTO}: Automatically detects the color scheme based on the user's system settings.
    * </ul>
    */
-  public enum DataColorMode {DARK,LIGTH,AUTO};
+  public enum DataColorMode {
+    DARK,
+    LIGHT,
+    /**
+     * @deprecated Use LIGHT instead
+     */
+    @Deprecated
+    LIGTH,
+    AUTO};
   
   /**
    * Base constructor that receives the content of the markdown component.
@@ -85,6 +93,7 @@ public class BaseMarkdownComponent extends ReactAdapterComponent implements HasS
         getElement().setAttribute("data-color-mode", "dark");
         break;
       case LIGTH:
+      case LIGHT:
         getElement().setAttribute("data-color-mode", "light");
         break;
       case AUTO:
