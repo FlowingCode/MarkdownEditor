@@ -21,7 +21,10 @@ package com.flowingcode.vaadin.addons.markdown;
 
 import com.flowingcode.vaadin.addons.demo.DemoSource;
 import com.flowingcode.vaadin.addons.markdown.BaseMarkdownComponent.DataColorMode;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -58,6 +61,35 @@ public class MarkdownEditorDemo extends VerticalLayout {
           break;
       }
     });
-    add(mde,cb);
+    Button getContentButton = new Button("Show content",ev->Notification.show(mde.getContent()));
+    Button setSampleContent = new Button("Set sample content",ev->{
+      mde.setContent("""
+# Markdown Editor Demo
+
+## This is a heading
+
+*This is a list item*
+
+[Link to Vaadin](https://vaadin.com)
+
+```java
+// Sample Java code
+public class Main {
+  public static void main(String[] args) {
+    System.out.println("Hello world!");
+  }
+}
+```
+
+> This is a blockquote
+
+**This is bold text**
+
+_This is italic text_
+
+~~This is strikethrough text~~
+      """);
+    });
+    add(mde,cb,new HorizontalLayout(getContentButton,setSampleContent));
   }
 }
