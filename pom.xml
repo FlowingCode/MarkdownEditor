@@ -4,7 +4,7 @@
 
     <groupId>com.flowingcode.vaadin.addons</groupId>
     <artifactId>markdown-editor-addon</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.1.0-SNAPSHOT</version>
     <name>Markdown Editor Add-on</name>
     <description>Markdown Editor for Vaadin Flow</description>
     <url>https://www.flowingcode.com/en/open-source/</url>
