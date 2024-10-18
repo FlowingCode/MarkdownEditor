@@ -37,7 +37,7 @@ public class MarkdownEditor extends BaseMarkdownComponent {
    * Constructor with empty content.
    */
   public MarkdownEditor() {
-    super(null);
+    super("");
   }
 
   /**
