@@ -23,6 +23,7 @@ import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.react.ReactAdapterComponent;
+import com.vaadin.flow.function.SerializableConsumer;
 
 /**
  * Base class for Markdown based Components.
@@ -47,6 +48,8 @@ public class BaseMarkdownComponent extends ReactAdapterComponent implements HasS
    */
   public enum DataColorMode {DARK,LIGTH,AUTO};
   
+  private String content;
+  
   /**
    * Base constructor that receives the content of the markdown component.
    * 
@@ -54,6 +57,7 @@ public class BaseMarkdownComponent extends ReactAdapterComponent implements HasS
    */
   public BaseMarkdownComponent(String content) {
     setContent(content);
+    this.addContentChangeListener(c->this.content = c);
   }
   
   /**
@@ -62,7 +66,7 @@ public class BaseMarkdownComponent extends ReactAdapterComponent implements HasS
    * @return the content of the Markdown component
    */
   public String getContent() {
-    return getState("content", String.class);
+    return content;
   }
 
   /**
@@ -71,7 +75,17 @@ public class BaseMarkdownComponent extends ReactAdapterComponent implements HasS
    * @param content retrieved from the state of the component
    */
   public void setContent(String content) {
+    this.content = content;
     setState("content", content);
+  }
+  
+  /**
+   * Adds the specified listener for the content change event.
+   * 
+   * @param listener the listener callback for receiving content changes
+   */
+  public void addContentChangeListener(SerializableConsumer<String> listener) {
+    addStateChangeListener("content", String.class, listener);
   }
   
   /**
