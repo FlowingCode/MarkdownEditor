@@ -20,58 +20,33 @@
 
 package com.flowingcode.vaadin.addons.markdown;
 
-import com.flowingcode.vaadin.addons.markdown.BaseMarkdownComponent.DataColorMode;
-import com.vaadin.flow.component.AbstractCompositeField;
-import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 
 /**
- * Markdown component that allows editing the contents.
+ * React adapter for markdown-editor.
  */
 @SuppressWarnings("serial")
 @NpmPackage(value = "rehype-sanitize", version = "6.0.0")
 @JsModule("./markdown-editor.tsx")
 @Tag("markdown-editor")
-public class MarkdownEditor
-    extends AbstractCompositeField<MarkdownEditorComponent, MarkdownEditor, String>
-    implements HasSize {
+public class MarkdownEditorComponent extends BaseMarkdownComponent {
 
   /**
    * Constructor with empty content.
    */
-  public MarkdownEditor() {
-    this("");
-  }
-
-  /**
-   * Constructor with initial value.
-   *
-   * @param initialValue the initial content for the Markdown editor
-   */
-  public MarkdownEditor(String initialValue) {
-    this(new MarkdownEditorComponent());
-    getEditor().setContent(initialValue);
-  }
-
-  /**
-   * Constructor with a custom editor component.
-   *
-   * @param editor the editor component.
-   */
-  protected MarkdownEditor(MarkdownEditorComponent editor) {
+  public MarkdownEditorComponent() {
     super("");
-    getEditor().addContentChangeListener(newValue -> setModelValue(newValue, true));
   }
 
   /**
-   * Returns the editor component.
+   * Constructor with default content.
    *
-   * @return the editor component
+   * @param content default content for the Markdown editor
    */
-  protected final MarkdownEditorComponent getEditor() {
-    return getContent();
+  public MarkdownEditorComponent(String content) {
+    super(content);
   }
 
   /**
@@ -80,7 +55,7 @@ public class MarkdownEditor
    * @return the placeholder text
    */
   public String getPlaceholder() {
-    return getEditor().getPlaceholder();
+    return getState("placeholder", String.class);
   }
 
   /**
@@ -89,7 +64,7 @@ public class MarkdownEditor
    * @param placeholder the placeholder text
    */
   public void setPlaceholder(String placeholder) {
-    getEditor().setPlaceholder(placeholder);
+    setState("placeholder", placeholder);
   }
 
   /**
@@ -98,7 +73,7 @@ public class MarkdownEditor
    * @return the configured maximum character count
    */
   public int getMaxLength() {
-    return getEditor().getMaxLength();
+    return getState("maxLength", Integer.class);
   }
 
   /**
@@ -107,21 +82,7 @@ public class MarkdownEditor
    * @param maxlength the maximum character count
    */
   public void setMaxLength(int maxlength) {
-    getEditor().setMaxLength(maxlength);
-  }
-
-  /**
-   * Sets the color mode of the Markdown component.
-   *
-   * @param mode the color mode of the component
-   */
-  public void setDataColorMode(DataColorMode mode) {
-    getEditor().setDataColorMode(mode);
-  }
-
-  @Override
-  protected void setPresentationValue(String newPresentationValue) {
-    getEditor().setContent(newPresentationValue);
+    setState("maxLength", maxlength);
   }
 
 }
