@@ -22,8 +22,6 @@ package com.flowingcode.vaadin.addons.markdown;
 
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
-import com.vaadin.flow.component.dependency.NpmPackage;
-import com.vaadin.flow.component.react.ReactAdapterComponent;
 
 /**
  * Component for displaying Markdown text
