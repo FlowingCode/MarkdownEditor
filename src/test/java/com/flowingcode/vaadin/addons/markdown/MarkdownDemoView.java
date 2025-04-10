@@ -34,6 +34,7 @@ public class MarkdownDemoView extends TabbedDemo {
   public MarkdownDemoView() {
     addDemo(MarkdownViewerDemo.class);
     addDemo(MarkdownEditorDemo.class);
+    addDemo(MarkdownBinderDemo.class);
     setSizeFull();
   }
 }
