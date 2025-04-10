@@ -19,8 +19,12 @@
  */
 package com.flowingcode.vaadin.addons.markdown;
 
+import com.vaadin.flow.component.AttachEvent;
+import com.vaadin.flow.component.DetachEvent;
 import com.vaadin.flow.component.HasSize;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.react.ReactAdapterComponent;
 import com.vaadin.flow.function.SerializableConsumer;
@@ -33,28 +37,8 @@ import com.vaadin.flow.function.SerializableConsumer;
 @NpmPackage(value = "mermaid", version = "11.2.1")
 @NpmPackage(value = "@uiw/react-md-editor", version = "4.0.4")
 @NpmPackage(value = "dompurify", version = "3.1.6")
+@JavaScript("./connector.js")
 public class BaseMarkdownComponent extends ReactAdapterComponent implements HasSize {
-  
-  /**
-   * Defines the color schemes for the Markdown component.
-   *
-   * The color mode can be set using the {@link #setDataColorMode(DataColorMode)} method.
-   *
-   * <ul>
-   *   <li>{@link #DARK}: Dark color scheme.
-   *   <li>{@link #LIGHT}: Light color scheme.
-   *   <li>{@link #AUTO}: Automatically detects the color scheme based on the user's system settings.
-   * </ul>
-   */
-  public enum DataColorMode {
-    DARK,
-    LIGHT,
-    /**
-     * @deprecated Use LIGHT instead
-     */
-    @Deprecated
-    LIGTH,
-    AUTO};
   
   private String content;
   
@@ -96,24 +80,27 @@ public class BaseMarkdownComponent extends ReactAdapterComponent implements HasS
     addStateChangeListener("content", String.class, listener);
   }
   
-  /**
-   * Sets the color mode of the Markdown component.
-   * 
-   * @param mode the color mode of the component
-   */
-  public void setDataColorMode(DataColorMode mode) {
-    switch (mode) {
-      case DARK:
-        getElement().setAttribute("data-color-mode", "dark");
-        break;
-      case LIGTH:
-      case LIGHT:
-        getElement().setAttribute("data-color-mode", "light");
-        break;
-      case AUTO:
-        getElement().removeAttribute("data-color-mode");
-        break;
-    }
+  private void runBeforeClientResponse(SerializableConsumer<UI> command) {
+    getElement().getNode().runWhenAttached(ui -> ui
+        .beforeClientResponse(this, context -> command.accept(ui)));
   }
-  
+
+  @Override
+  protected void onAttach(AttachEvent attachEvent) {
+    super.onAttach(attachEvent);
+
+    runBeforeClientResponse(ui -> ui.getPage().executeJs(
+        "window.Vaadin.Flow.fcMarkdownEditorConnector.observeThemeChange($0)",
+        getElement()));
+  }
+
+  @Override
+  protected void onDetach(DetachEvent detachEvent) {
+    super.onDetach(detachEvent);
+
+    getUI().ifPresent(ui -> ui.getPage().executeJs(
+        "window.Vaadin.Flow.fcMarkdownEditorConnector.unobserveThemeChange($0)",
+        this.getElement()));
+  }
+
 }
