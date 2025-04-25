@@ -31,7 +31,7 @@ import com.vaadin.flow.component.dependency.NpmPackage;
 @NpmPackage(value = "rehype-sanitize", version = "6.0.0")
 @JsModule("./markdown-editor.tsx")
 @Tag("markdown-editor")
-public class MarkdownEditorComponent extends BaseMarkdownComponent {
+class MarkdownEditorComponent extends BaseMarkdownComponent {
 
   /**
    * Constructor with empty content.
