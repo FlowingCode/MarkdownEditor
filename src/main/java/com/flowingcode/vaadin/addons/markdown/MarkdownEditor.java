@@ -110,10 +110,10 @@ public class MarkdownEditor
   /**
    * Sets the maximum character count for the Markdown editor.
    *
-   * @param maxlength the maximum character count
+   * @param maxLength the maximum character count
    */
-  public void setMaxLength(int maxlength) {
-    getEditor().setMaxLength(maxlength);
+  public void setMaxLength(int maxLength) {
+    getEditor().setMaxLength(maxLength);
   }
 
   /**
