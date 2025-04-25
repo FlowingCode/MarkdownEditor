@@ -23,17 +23,11 @@ package com.flowingcode.vaadin.addons.markdown;
 import com.flowingcode.vaadin.addons.markdown.BaseMarkdownComponent.DataColorMode;
 import com.vaadin.flow.component.AbstractCompositeField;
 import com.vaadin.flow.component.HasSize;
-import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.dependency.JsModule;
-import com.vaadin.flow.component.dependency.NpmPackage;
 
 /**
  * Markdown component that allows editing the contents.
  */
 @SuppressWarnings("serial")
-@NpmPackage(value = "rehype-sanitize", version = "6.0.0")
-@JsModule("./markdown-editor.tsx")
-@Tag("markdown-editor")
 public class MarkdownEditor
     extends AbstractCompositeField<MarkdownEditorComponent, MarkdownEditor, String>
     implements HasSize {
