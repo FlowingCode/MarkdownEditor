@@ -79,10 +79,10 @@ class MarkdownEditorComponent extends BaseMarkdownComponent {
   /**
    * Sets the maximum character count for the Markdown editor.
    *
-   * @param maxlength the maximum character count
+   * @param maxLength the maximum character count
    */
-  public void setMaxLength(int maxlength) {
-    setState("maxLength", maxlength);
+  public void setMaxLength(int maxLength) {
+    setState("maxLength", maxLength);
   }
 
 }
