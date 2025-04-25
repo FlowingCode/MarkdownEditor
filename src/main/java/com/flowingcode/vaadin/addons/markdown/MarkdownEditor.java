@@ -65,6 +65,12 @@ public class MarkdownEditor
     getEditor().addContentChangeListener(newValue -> setModelValue(newValue, true));
   }
 
+
+  @Override
+  protected MarkdownEditorComponent initContent() {
+    return new MarkdownEditorComponent();
+  }
+
   /**
    * Returns the editor component.
    *
