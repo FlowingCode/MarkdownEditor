@@ -51,18 +51,9 @@ public class MarkdownEditor
    * @param initialValue the initial content for the Markdown editor
    */
   public MarkdownEditor(String initialValue) {
-    this(new MarkdownEditorComponent());
-    getEditor().setContent(initialValue);
-  }
-
-  /**
-   * Constructor with a custom editor component.
-   *
-   * @param editor the editor component.
-   */
-  protected MarkdownEditor(MarkdownEditorComponent editor) {
     super("");
     getEditor().addContentChangeListener(newValue -> setModelValue(newValue, true));
+    getEditor().setContent(initialValue);
   }
 
 
