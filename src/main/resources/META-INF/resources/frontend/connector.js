@@ -34,7 +34,8 @@
 				if (supportedTheme(theme)) {
 					markDownEditor.setAttribute('data-color-mode', theme);
 				} else {
-					markDownEditor.removeAttribute('data-color-mode');
+					// force light theme which is Vaadin's default theme
+					markDownEditor.setAttribute('data-color-mode', 'light');
 				}
 			};
 
