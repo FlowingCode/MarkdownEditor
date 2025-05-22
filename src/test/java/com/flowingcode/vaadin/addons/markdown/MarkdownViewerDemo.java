@@ -20,8 +20,6 @@
 package com.flowingcode.vaadin.addons.markdown;
 
 import com.flowingcode.vaadin.addons.demo.DemoSource;
-import com.flowingcode.vaadin.addons.markdown.BaseMarkdownComponent.DataColorMode;
-import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -36,7 +34,6 @@ public class MarkdownViewerDemo extends VerticalLayout {
     setSizeFull();
     MarkdownViewer mdv = new MarkdownViewer();
     mdv.setSizeFull();
-    mdv.setDataColorMode(DataColorMode.LIGTH);
     mdv.setContent("""
 
 # h1 Heading
@@ -202,25 +199,6 @@ Duplicated footnote reference[^second].
 [^second]: Footnote text.
             
             """);
-    ComboBox<String> cb = new ComboBox<String>();
-    cb.setItems("Dark","Light","Automatic");
-    cb.setLabel("Color mode");
-    cb.setValue("Light");
-    cb.addValueChangeListener(ev->{
-      switch(ev.getValue()) {
-        case "Dark":
-          mdv.setDataColorMode(DataColorMode.DARK);
-          break;
-        case "Light":
-          mdv.setDataColorMode(DataColorMode.LIGHT);
-          break;
-        case "Automatic":
-          mdv.setDataColorMode(DataColorMode.AUTO);
-          break;
-        default:
-          break;
-      }
-    });
-    add(mdv,cb);
+    add(mdv);
   }
 }

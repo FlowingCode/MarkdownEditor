@@ -20,7 +20,6 @@
 
 package com.flowingcode.vaadin.addons.markdown;
 
-import com.flowingcode.vaadin.addons.markdown.BaseMarkdownComponent.DataColorMode;
 import com.vaadin.flow.component.AbstractCompositeField;
 import com.vaadin.flow.component.HasSize;
 
@@ -99,15 +98,6 @@ public class MarkdownEditor
    */
   public void setMaxLength(int maxLength) {
     getEditor().setMaxLength(maxLength);
-  }
-
-  /**
-   * Sets the color mode of the Markdown component.
-   *
-   * @param mode the color mode of the component
-   */
-  public void setDataColorMode(DataColorMode mode) {
-    getEditor().setDataColorMode(mode);
   }
 
   @Override

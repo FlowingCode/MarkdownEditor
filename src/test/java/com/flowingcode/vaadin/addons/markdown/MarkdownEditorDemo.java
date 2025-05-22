@@ -20,7 +20,7 @@
 package com.flowingcode.vaadin.addons.markdown;
 
 import com.flowingcode.vaadin.addons.demo.DemoSource;
-import com.flowingcode.vaadin.addons.markdown.BaseMarkdownComponent.DataColorMode;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.notification.Notification;
@@ -28,6 +28,8 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.theme.lumo.Lumo;
+import java.util.List;
 
 @DemoSource
 @PageTitle("Markdown Editor Demo")
@@ -41,26 +43,6 @@ public class MarkdownEditorDemo extends VerticalLayout {
     mde.setSizeFull();
     mde.setPlaceholder("Enter Markdown here");
     mde.setMaxLength(500);
-    mde.setDataColorMode(DataColorMode.LIGTH);
-    ComboBox<String> cb = new ComboBox<String>();
-    cb.setItems("Dark","Light","Automatic");
-    cb.setLabel("Color mode");
-    cb.setValue("Light");
-    cb.addValueChangeListener(ev->{
-      switch(ev.getValue()) {
-        case "Dark":
-          mde.setDataColorMode(DataColorMode.DARK);
-          break;
-        case "Light":
-          mde.setDataColorMode(DataColorMode.LIGHT);
-          break;
-        case "Automatic":
-          mde.setDataColorMode(DataColorMode.AUTO);
-          break;
-        default:
-          break;
-      }
-    });
     Button getContentButton = new Button("Show content",ev->Notification.show(mde.getValue()));
     Button setSampleContent = new Button("Set sample content",ev->{
       mde.setValue("""
@@ -90,6 +72,6 @@ _This is italic text_
 ~~This is strikethrough text~~
       """);
     });
-    add(mde,cb,new HorizontalLayout(getContentButton,setSampleContent));
+    add(mde,new HorizontalLayout(getContentButton,setSampleContent));
   }
 }
