@@ -28,13 +28,14 @@
 
 			markDownEditor.$connector = {};
 
-            const supportedTheme = theme => ['light', 'dark'].includes(theme);
-            
+			const supportedTheme = theme => ['light', 'dark'].includes(theme);
+
 			const setDataColorMode = theme => {
 				if (supportedTheme(theme)) {
 					markDownEditor.setAttribute('data-color-mode', theme);
 				} else {
-					markDownEditor.removeAttribute('data-color-mode');
+					// force light theme which is Vaadin's default theme
+					markDownEditor.setAttribute('data-color-mode', 'light');
 				}
 			};
 
@@ -43,30 +44,32 @@
 			if (supportedTheme(mainTheme)) {
 				setDataColorMode(mainTheme);
 			} else {
-				// Listen for theme changes in body element otherwise
-
-				// options for the observer (which mutations to observe)
-				const config = { attributes: true };
-
-				// callback function to execute when mutations are observed
-				const callback = (mutationList, observer) => {
-					for (const mutation of mutationList) {
-						if (mutation.type === 'attributes' && mutation.attributeName === 'theme') {
-                            const themeName = mutation.target.getAttribute(mutation.attributeName);
-                            setDataColorMode(themeName);
-						}
-					}
-				};
-
-				// create an observer instance linked to the callback function
-				markDownEditor.$connector.themeChangeObserver = new MutationObserver(callback);
-
-				// start observing html tag for configured mutations
-				markDownEditor.$connector.themeChangeObserver.observe(document.documentElement, config);
-
-				// start observing body tag for configured mutations
-				markDownEditor.$connector.themeChangeObserver.observe(document.body, config);
+				// set light theme by default
+				markDownEditor.setAttribute('data-color-mode', 'light');
 			}
+
+			// options for the observer (which mutations to observe)
+			const config = { attributes: true };
+
+			// callback function to execute when mutations are observed
+			const callback = (mutationList, observer) => {
+				for (const mutation of mutationList) {
+					if (mutation.type === 'attributes' && mutation.attributeName === 'theme') {
+						const themeName = mutation.target.getAttribute(mutation.attributeName);
+						console.log("theme", themeName);
+						setDataColorMode(themeName);
+					}
+				}
+			};
+
+			// create an observer instance linked to the callback function
+			markDownEditor.$connector.themeChangeObserver = new MutationObserver(callback);
+
+			// observe html tag for configured mutations
+			markDownEditor.$connector.themeChangeObserver.observe(document.documentElement, config);
+
+			// observe body tag for configured mutations
+			markDownEditor.$connector.themeChangeObserver.observe(document.body, config);
 		},
 		unobserveThemeChange: markDownEditor => {
 			// stop observing the target node for configured mutations
