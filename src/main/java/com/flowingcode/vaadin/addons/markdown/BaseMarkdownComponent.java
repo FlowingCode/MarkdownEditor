@@ -24,7 +24,7 @@ import com.vaadin.flow.component.DetachEvent;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.CssImport;
-import com.vaadin.flow.component.dependency.JavaScript;
+import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.react.ReactAdapterComponent;
 import com.vaadin.flow.function.SerializableConsumer;
@@ -37,7 +37,7 @@ import com.vaadin.flow.function.SerializableConsumer;
 @NpmPackage(value = "mermaid", version = "11.2.1")
 @NpmPackage(value = "@uiw/react-md-editor", version = "4.0.4")
 @NpmPackage(value = "dompurify", version = "3.1.6")
-@JavaScript("./fcMarkdownEditorConnector.js")
+@JsModule("./fcMarkdownEditorConnector.js")
 public class BaseMarkdownComponent extends ReactAdapterComponent implements HasSize {
   
   private String content;
