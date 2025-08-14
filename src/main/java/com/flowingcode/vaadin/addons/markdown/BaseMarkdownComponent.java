@@ -37,7 +37,7 @@ import com.vaadin.flow.function.SerializableConsumer;
 @NpmPackage(value = "mermaid", version = "11.2.1")
 @NpmPackage(value = "@uiw/react-md-editor", version = "4.0.4")
 @NpmPackage(value = "dompurify", version = "3.1.6")
-@JavaScript("./connector.js")
+@JavaScript("./fcMarkdownEditorConnector.js")
 public class BaseMarkdownComponent extends ReactAdapterComponent implements HasSize {
   
   private String content;
