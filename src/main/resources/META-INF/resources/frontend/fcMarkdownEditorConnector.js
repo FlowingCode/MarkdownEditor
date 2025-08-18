@@ -73,7 +73,7 @@
 		},
 		unobserveThemeChange: markDownEditor => {
 			// stop observing the target node for configured mutations
-			if (markDownEditor.$connector.themeChangeObserver) {
+			if (markDownEditor?.$connector?.themeChangeObserver) {
 				markDownEditor.$connector.themeChangeObserver.disconnect();
 				markDownEditor.$connector.themeChangeObserver = null;
 			}
