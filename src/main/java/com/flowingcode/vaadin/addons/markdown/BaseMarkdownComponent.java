@@ -53,7 +53,7 @@ public class BaseMarkdownComponent extends ReactAdapterComponent implements HasS
   }
   
   /**
-   * Sets the content of the Markdown component.
+   * Gets the content of the Markdown component.
    * 
    * @return the content of the Markdown component
    */
@@ -62,9 +62,9 @@ public class BaseMarkdownComponent extends ReactAdapterComponent implements HasS
   }
 
   /**
-   * Gets the content of the Markdown component.
+   * Sets the content of the Markdown component.
    * 
-   * @param content retrieved from the state of the component
+   * @param content the content to be used in the Markdown component
    */
   public void setContent(String content) {
     this.content = content;
