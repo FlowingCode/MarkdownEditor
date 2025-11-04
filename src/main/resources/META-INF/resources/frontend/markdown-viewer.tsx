@@ -2,7 +2,7 @@
  * #%L
  * Markdown Editor Add-on
  * %%
- * Copyright (C) 2024 Flowing Code
+ * Copyright (C) 2024-2025 Flowing Code
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import {
 
 
 import MDEditor from "@uiw/react-md-editor";
-import {ReactAdapterElement, type RenderHooks} from "Frontend/generated/flow/ReactAdapter";
+import {ReactAdapterElement, type RenderHooks, type Root} from "Frontend/generated/flow/ReactAdapter";
 import React from 'react';
 import "@uiw/react-md-editor/markdown-editor.css";
 import "@uiw/react-markdown-preview/markdown.css";
@@ -81,14 +81,38 @@ const Code = ({ inline, children = [], className, ...props }) => {
 
 
 class MarkdownViewerElement extends ReactAdapterElement {
+    private root: Root | null = null;
+    private isInitialized: boolean = false;
+
+    public override connectedCallback() {
+        if (!this.isInitialized) {
+            super.connectedCallback(); 
+            this.root = this.reactRoot; 
+            this.isInitialized = true;
+        } else {
+            this.update();
+        }
+    }
+
+    public override disconnectedCallback() {
+        if (this.root) {
+            this.root.render(null);
+        }
+    }
+
+    protected override update() {
+        if (this.root) {
+            this.root.render(this.render(this.createRenderHooks()));
+        }
+    }
 
     protected override render(hooks: RenderHooks): ReactElement | null {
       const [content] = hooks.useState<string>("content"); 
       
-      return <MDEditor.Markdown source={content}
-					          components={{
-					            code: Code
-					        }} />;
+      return <MDEditor.Markdown key={content} source={content}
+                              components={{
+                                code: Code
+                            }} />;
     }
 }
   
