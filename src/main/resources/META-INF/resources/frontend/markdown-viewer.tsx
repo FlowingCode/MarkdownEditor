@@ -47,19 +47,32 @@ const Code = ({ inline, children = [], className, ...props }) => {
     : children[0] || "";
 
   useEffect(() => {
-    if (container && isMermaid && demoid.current && code) {
+    let isMounted = true;
+    if (container && isMermaid && code) {
       mermaid
         .render(demoid.current, code)
         .then(({ svg, bindFunctions }) => {
-          container.innerHTML = svg;
-          if (bindFunctions) {
-            bindFunctions(container);
+          if (isMounted) {
+            container.innerHTML = svg;
+            if (bindFunctions) {
+              bindFunctions(container);
+            }
           }
         })
         .catch((error) => {
+          if (isMounted) {
+            container.innerHTML = "Mermaid render error";
+          }
           console.log("error:", error);
         });
     }
+
+    return () => {
+      isMounted = false;
+      if (container) {
+        container.innerHTML = "";
+      }
+    };
   }, [container, isMermaid, code, demoid]);
 
   const refElement = useCallback((node) => {
