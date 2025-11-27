@@ -35,6 +35,10 @@ import rehypeSanitize from "rehype-sanitize";
 import mermaid from "mermaid";
 import { getCodeString } from "rehype-rewrite";
 
+mermaid.initialize({
+  suppressErrorRendering: true,
+});
+
 const randomid = () => parseInt(String(Math.random() * 1e15), 10).toString(36);
 const Code = ({ inline, children = [], className, ...props }) => {
   const demoid = useRef(`dome${randomid()}`);
