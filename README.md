@@ -14,6 +14,10 @@ This is a wrapper around [the React Markdown Editor component](https://github.co
 * Support for dark and light themes
 * Built in support for sanitization
 
+## Supported versions
+
+Supported versions: Vaadin 24-25 (add-on version 2.x)
+
 ## Online demo
 
 [Online demo here](http://addonsv24.flowingcode.com/markdown-editor)
